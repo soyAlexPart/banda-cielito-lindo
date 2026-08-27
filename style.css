@@ -4433,4 +4433,30 @@ video {
 
         box-shadow: none !important;
     }
+
+}
+
+/* =========================================================
+   FIX DEFINITIVO - COTIZA TU EVENTO EN MENÚ MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .navbar .nav-menu > a:nth-child(4) {
+        align-self: flex-start !important;
+
+        width: auto !important;
+
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+
+        text-align: left !important;
+
+        justify-content: flex-start !important;
+        align-items: flex-start !important;
+    }
+
 }
