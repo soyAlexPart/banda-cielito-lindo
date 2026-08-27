@@ -1411,9 +1411,9 @@ function crearMensajeWhatsApp() {
 
 `Hola, me gustaría solicitar una cotización para mi evento.
 
-━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━
 📋 DATOS DEL EVENTO
-━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━
 
 *Tipo de evento:* ${tipoEvento}
 
@@ -1425,9 +1425,9 @@ function crearMensajeWhatsApp() {
 
 *Servicio solicitado:* ${servicio}
 
-━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━
 📍 UBICACIÓN
-━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━
 
 *Ciudad / comunidad:* ${ubicacion}
 
@@ -1454,9 +1454,9 @@ ${mapsUrl}`;
 
 `
 
-━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━
 👤 DATOS DE CONTACTO
-━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━
 
 *Nombre:* ${nombre}
 
@@ -1469,9 +1469,9 @@ ${mapsUrl}`;
 
 `
 
-━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━
 📝 COMENTARIOS
-━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━
 
 ${comentarios}`;
 
@@ -1482,7 +1482,7 @@ ${comentarios}`;
 
 `
 
-━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━
 
 Entiendo que esta solicitud no representa una reservación y que la disponibilidad y cotización final deberán ser confirmadas por la agrupación.
 
@@ -1905,3 +1905,405 @@ console.log(
 console.log(
     "Formulario de cotización actualizado."
 );
+
+/* =========================================================
+   VISOR DE GALERÍA DE FOTOS
+========================================================= */
+
+const photoLightbox =
+    document.getElementById("photoLightbox");
+
+const lightboxImage =
+    document.getElementById("lightboxImage");
+
+const lightboxClose =
+    document.getElementById("lightboxClose");
+
+const lightboxPrev =
+    document.getElementById("lightboxPrev");
+
+const lightboxNext =
+    document.getElementById("lightboxNext");
+
+const photoCards =
+    document.querySelectorAll(".photo-card");
+
+
+let fotoActual = 0;
+
+
+/* =========================================================
+   ABRIR FOTO
+========================================================= */
+
+function abrirFoto(indice) {
+
+    if (
+        !photoLightbox ||
+        !lightboxImage ||
+        !photoCards.length
+    ) {
+        return;
+    }
+
+
+    fotoActual = indice;
+
+
+    const foto =
+        photoCards[fotoActual];
+
+
+    const imagen =
+        foto.querySelector("img");
+
+
+    if (!imagen) {
+        return;
+    }
+
+
+    lightboxImage.src =
+        imagen.src;
+
+
+    lightboxImage.alt =
+        imagen.alt || "Fotografía de Banda Cielito Lindo";
+
+
+    photoLightbox.classList.add("active");
+
+
+    photoLightbox.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+/* =========================================================
+   CERRAR VISOR
+========================================================= */
+
+function cerrarFoto() {
+
+    if (!photoLightbox) {
+        return;
+    }
+
+
+    photoLightbox.classList.remove(
+        "active"
+    );
+
+
+    photoLightbox.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+/* =========================================================
+   SIGUIENTE FOTO
+========================================================= */
+
+function siguienteFoto() {
+
+    if (!photoCards.length) {
+        return;
+    }
+
+
+    fotoActual =
+        (fotoActual + 1) %
+        photoCards.length;
+
+
+    abrirFoto(fotoActual);
+
+}
+
+
+/* =========================================================
+   FOTO ANTERIOR
+========================================================= */
+
+function fotoAnterior() {
+
+    if (!photoCards.length) {
+        return;
+    }
+
+
+    fotoActual =
+        (
+            fotoActual -
+            1 +
+            photoCards.length
+        ) %
+        photoCards.length;
+
+
+    abrirFoto(fotoActual);
+
+}
+
+
+/* =========================================================
+   CLICK EN LAS FOTOS
+========================================================= */
+
+photoCards.forEach(
+    function (foto, indice) {
+
+        foto.addEventListener(
+            "click",
+            function (event) {
+
+                event.preventDefault();
+
+                abrirFoto(indice);
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================================
+   BOTÓN CERRAR
+========================================================= */
+
+if (lightboxClose) {
+
+    lightboxClose.addEventListener(
+        "click",
+        function () {
+
+            cerrarFoto();
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   BOTÓN SIGUIENTE
+========================================================= */
+
+if (lightboxNext) {
+
+    lightboxNext.addEventListener(
+        "click",
+        function () {
+
+            siguienteFoto();
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   BOTÓN ANTERIOR
+========================================================= */
+
+if (lightboxPrev) {
+
+    lightboxPrev.addEventListener(
+        "click",
+        function () {
+
+            fotoAnterior();
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   CERRAR AL HACER CLICK FUERA DE LA FOTO
+========================================================= */
+
+if (photoLightbox) {
+
+    photoLightbox.addEventListener(
+        "click",
+        function (event) {
+
+            if (
+                event.target ===
+                photoLightbox
+            ) {
+
+                cerrarFoto();
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   TECLADO
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function (event) {
+
+        if (
+            !photoLightbox ||
+            !photoLightbox.classList.contains(
+                "active"
+            )
+        ) {
+
+            return;
+
+        }
+
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            cerrarFoto();
+
+        }
+
+
+        if (
+            event.key === "ArrowRight"
+        ) {
+
+            siguienteFoto();
+
+        }
+
+
+        if (
+            event.key === "ArrowLeft"
+        ) {
+
+            fotoAnterior();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   DESLIZAR EN CELULAR
+========================================================= */
+
+let touchStartX = 0;
+let touchEndX = 0;
+
+
+if (photoLightbox) {
+
+    photoLightbox.addEventListener(
+        "touchstart",
+        function (event) {
+
+            touchStartX =
+                event.changedTouches[0].screenX;
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    photoLightbox.addEventListener(
+        "touchend",
+        function (event) {
+
+            touchEndX =
+                event.changedTouches[0].screenX;
+
+
+            const diferencia =
+                touchEndX - touchStartX;
+
+
+            /*
+               Solo cambiamos de foto
+               si el usuario deslizó
+               suficientemente.
+            */
+
+            if (
+                Math.abs(diferencia) < 50
+            ) {
+
+                return;
+
+            }
+
+
+            if (diferencia < 0) {
+
+                siguienteFoto();
+
+            } else {
+
+                fotoAnterior();
+
+            }
+
+        },
+        {
+            passive: true
+        }
+    );
+
+}
+
+document.querySelectorAll('.date-picker').forEach(datePicker => {
+
+    const input = datePicker.querySelector('input[type="date"]');
+
+    if (!input) return;
+
+    datePicker.addEventListener('click', () => {
+
+        try {
+
+            if (typeof input.showPicker === 'function') {
+                input.showPicker();
+            } else {
+                input.focus();
+                input.click();
+            }
+
+        } catch (error) {
+
+            input.focus();
+            input.click();
+
+        }
+
+    });
+
+});

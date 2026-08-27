@@ -1055,6 +1055,21 @@ textarea {
     border: 0;
 }
 
+.video-container video {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    background: #000;
+}
+
 
 /* =========================================================
    INFO VIDEO
@@ -1319,6 +1334,26 @@ textarea {
         rgba(19, 138, 85, 0.12);
 }
 
+select.form-control {
+    cursor: pointer;
+
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    padding-right: 50px;
+
+    background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23E8E5DD' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+
+    background-repeat: no-repeat;
+
+    background-position:
+        right 18px center;
+
+    background-size: 17px 17px;
+}
+
 
 /* =========================================================
    SELECT
@@ -1379,50 +1414,101 @@ textarea.form-control {
    FECHA
 ========================================================= */
 
+/* =========================================================
+   CAMPO DE FECHA - AJUSTE FINAL
+========================================================= */
+
 .date-picker {
+    position: relative;
 
-    position:
-        relative;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
 
-    width:
-        100%;
+    height: 55px;
 
-    max-width:
-        100%;
+    display: flex;
+    align-items: center;
 
-    min-width:
-        0;
+    padding: 0 17px;
 
-    height:
-        55px;
+    background: #101314;
 
-    display:
-        flex;
+    border: 1px solid rgba(255, 255, 255, 0.13);
 
-    align-items:
-        center;
+    border-radius: 7px;
 
-    padding:
-        0 17px;
+    box-sizing: border-box;
 
-    background:
-        #0A0E0C;
+    overflow: hidden;
 
-    border:
-        1px solid
-        rgba(255, 255, 255, 0.12);
+    cursor: pointer;
+}
 
-    border-radius:
-        7px;
+.date-display {
+    display: block;
 
-    box-sizing:
-        border-box;
+    width: 100%;
 
-    overflow:
-        hidden;
+    color: #777A78;
 
-    cursor:
-        pointer;
+    font-size: 1rem;
+
+    line-height: 1;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    pointer-events: none;
+}
+
+.date-display.has-date {
+    color: var(--white);
+}
+
+
+/* El input queda invisible y NO interfiere con el clic */
+
+.date-picker input[type="date"] {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    border: 0;
+
+    outline: none;
+
+    background: transparent;
+
+    box-sizing: border-box;
+}
+
+
+/* Estado cuando el usuario entra al campo */
+
+.date-picker:focus-within {
+    border-color: var(--gold);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(197, 164, 90, 0.09);
+}
+
+.date-picker.error {
+    border-color: var(--danger);
 }
 
 .date-display {
@@ -1459,57 +1545,6 @@ textarea.form-control {
 
     color:
         var(--white);
-}
-
-.date-picker input[type="date"] {
-
-    position:
-        absolute;
-
-    top:
-        0;
-
-    left:
-        0;
-
-    width:
-        100%;
-
-    height:
-        100%;
-
-    max-width:
-        100%;
-
-    min-width:
-        0;
-
-    margin:
-        0;
-
-    padding:
-        0;
-
-    opacity:
-        0;
-
-    cursor:
-        pointer;
-
-    border:
-        0;
-
-    outline:
-        none;
-
-    background:
-        transparent;
-
-    box-sizing:
-        border-box;
-
-    z-index:
-        2;
 }
 
 .date-picker:focus-within {
@@ -4459,4 +4494,627 @@ video {
         align-items: flex-start !important;
     }
 
+}
+
+/* =========================================================
+   GALERÍA DE FOTOS
+========================================================= */
+
+.photo-gallery {
+    position: relative;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0D0F10 0%,
+            #111A16 50%,
+            #0D0F10 100%
+        );
+
+    overflow: hidden;
+}
+
+
+/* Detalle decorativo tricolor */
+
+.photo-gallery::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--green) 0%,
+            var(--green) 33.33%,
+            var(--white) 33.33%,
+            var(--white) 66.66%,
+            var(--red) 66.66%,
+            var(--red) 100%
+        );
+}
+
+
+/* =========================================================
+   CONTENEDOR
+========================================================= */
+
+.photo-grid {
+    width: 100%;
+    max-width: var(--max-width);
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 18px;
+
+    align-items: stretch;
+}
+
+
+/* =========================================================
+   TARJETAS
+========================================================= */
+
+.photo-card {
+    position: relative;
+
+    display: block;
+
+    width: 100%;
+
+    height: 320px;
+
+    overflow: hidden;
+
+    background: #111415;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.09);
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 12px 35px
+        rgba(0, 0, 0, 0.28);
+
+    cursor: pointer;
+
+    isolation: isolate;
+
+    transition:
+        transform 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+
+/* =========================================================
+   IMAGEN
+========================================================= */
+
+.photo-card img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition:
+        transform 0.55s ease,
+        filter 0.55s ease;
+}
+
+
+/* =========================================================
+   CAPA OSCURA
+========================================================= */
+
+.photo-card::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0) 45%,
+            rgba(0, 0, 0, 0.65) 100%
+        );
+
+    opacity: 0.65;
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.35s ease;
+}
+
+
+/* =========================================================
+   DETALLE VERDE / ROJO
+========================================================= */
+
+.photo-card::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--green) 0%,
+            var(--white) 50%,
+            var(--red) 100%
+        );
+
+    z-index: 2;
+
+    transform:
+        scaleX(0);
+
+    transform-origin: center;
+
+    transition:
+        transform 0.35s ease;
+}
+
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+.photo-card:hover {
+    transform: translateY(-6px);
+
+    border-color:
+        rgba(197, 164, 90, 0.55);
+
+    box-shadow:
+        0 20px 45px
+        rgba(0, 0, 0, 0.42);
+}
+
+.photo-card:hover img {
+    transform: scale(1.06);
+
+    filter:
+        brightness(1.08);
+}
+
+.photo-card:hover::after {
+    opacity: 0.4;
+}
+
+.photo-card:hover::before {
+    transform: scaleX(1);
+}
+
+
+/* =========================================================
+   EFECTO AL HACER CLICK
+========================================================= */
+
+.photo-card:active {
+    transform:
+        translateY(-2px)
+        scale(0.99);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1024px) {
+
+    .photo-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 16px;
+    }
+
+    .photo-card {
+        height: 300px;
+    }
+}
+
+
+/* =========================================================
+   CELULAR
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .photo-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 12px;
+    }
+
+    .photo-card {
+        height: 230px;
+
+        border-radius: 8px;
+    }
+}
+
+
+/* =========================================================
+   CELULARES PEQUEÑOS
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .photo-grid {
+        grid-template-columns: 1fr;
+
+        gap: 14px;
+    }
+
+    .photo-card {
+        height: 270px;
+    }
+}
+
+
+/* =========================================================
+   ACCESIBILIDAD
+========================================================= */
+
+.photo-card:focus-visible {
+    outline:
+        2px solid
+        var(--gold);
+
+    outline-offset: 4px;
+}
+
+/* =========================================================
+   VISOR DE GALERÍA / LIGHTBOX
+========================================================= */
+
+.photo-lightbox {
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 70px 80px;
+
+    background: rgba(0, 0, 0, 0.94);
+
+    opacity: 0;
+    visibility: hidden;
+
+    pointer-events: none;
+
+    z-index: 9999;
+
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+}
+
+
+/* =========================================================
+   VISOR ABIERTO
+========================================================= */
+
+.photo-lightbox.active {
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+}
+
+
+/* =========================================================
+   CONTENEDOR DE IMAGEN
+========================================================= */
+
+.lightbox-content {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 0;
+    min-height: 0;
+}
+
+.lightbox-content img {
+    display: block;
+
+    max-width: 100%;
+    max-height: 100%;
+
+    width: auto;
+    height: auto;
+
+    object-fit: contain;
+
+    border-radius: 6px;
+
+    box-shadow:
+        0 25px 80px
+        rgba(0, 0, 0, 0.65);
+
+    user-select: none;
+
+    -webkit-user-drag: none;
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+/* =========================================================
+   BOTÓN CERRAR
+========================================================= */
+
+.lightbox-close {
+    position: absolute;
+
+    top: 20px;
+    right: 25px;
+
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    background:
+        rgba(20, 23, 24, 0.9);
+
+    color: var(--white);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.2);
+
+    border-radius: 50%;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 34px;
+
+    font-weight: 300;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    z-index: 10;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.lightbox-close:hover {
+    background: var(--red);
+
+    color: #FFFFFF;
+
+    border-color: var(--red);
+
+    transform: rotate(90deg);
+}
+
+
+/* =========================================================
+   BOTONES ANTERIOR / SIGUIENTE
+========================================================= */
+
+.lightbox-prev,
+.lightbox-next {
+    position: absolute;
+
+    top: 50%;
+
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    background:
+        rgba(20, 23, 24, 0.88);
+
+    color: var(--white);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.18);
+
+    border-radius: 50%;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 38px;
+
+    font-weight: 300;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    z-index: 10;
+
+    transform:
+        translateY(-50%);
+
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.lightbox-prev {
+    left: 20px;
+}
+
+.lightbox-next {
+    right: 20px;
+}
+
+.lightbox-prev:hover,
+.lightbox-next:hover {
+    background: var(--green);
+
+    color: #FFFFFF;
+
+    border-color: var(--green);
+
+    transform:
+        translateY(-50%)
+        scale(1.08);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .photo-lightbox {
+        padding:
+            65px 45px;
+    }
+
+    .lightbox-close {
+        top: 12px;
+        right: 12px;
+
+        width: 46px;
+        height: 46px;
+
+        font-size: 30px;
+    }
+
+    .lightbox-prev,
+    .lightbox-next {
+        width: 42px;
+        height: 42px;
+
+        font-size: 32px;
+    }
+
+    .lightbox-prev {
+        left: 8px;
+    }
+
+    .lightbox-next {
+        right: 8px;
+    }
+
+    .lightbox-content img {
+        max-width: 100%;
+        max-height: 100%;
+
+        border-radius: 4px;
+    }
+}
+
+
+/* =========================================================
+   CELULARES PEQUEÑOS
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .photo-lightbox {
+        padding:
+            60px 38px;
+    }
+
+    .lightbox-close {
+        width: 42px;
+        height: 42px;
+
+        font-size: 28px;
+    }
+
+    .lightbox-prev,
+    .lightbox-next {
+        width: 36px;
+        height: 36px;
+
+        font-size: 28px;
+    }
+
+    .lightbox-prev {
+        left: 5px;
+    }
+
+    .lightbox-next {
+        right: 5px;
+    }
+}
+
+
+/* =========================================================
+   REDUCIR ANIMACIONES
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .photo-lightbox,
+    .lightbox-content img,
+    .lightbox-close,
+    .lightbox-prev,
+    .lightbox-next {
+
+        transition: none !important;
+    }
 }
