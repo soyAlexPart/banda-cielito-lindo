@@ -3948,19 +3948,32 @@ body {
 
 
     .hero h1 {
+    width: 100%;
+    max-width: 100%;
 
-        font-size:
-            clamp(
-                2.7rem,
-                13vw,
-                5rem
-            );
+    margin: 0 auto;
 
-        line-height: 0.94;
+    color: var(--white);
 
-        letter-spacing:
-            1px;
-    }
+    font-size: clamp(
+        2.35rem,
+        10vw,
+        4.8rem
+    );
+
+    line-height: 0.94;
+
+    letter-spacing: 1px;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    overflow-wrap: normal;
+    word-break: normal;
+
+    box-sizing: border-box;
+}
 
 
     .hero h2 {
@@ -4134,5 +4147,290 @@ body {
 
         padding:
             10px 16px;
+    }
+}
+
+/* =========================================================
+   AJUSTE FINAL RESPONSIVE DEL HERO
+========================================================= */
+
+/* COMPUTADORA */
+.hero h1 {
+    font-size: clamp(3.2rem, 6vw, 6rem);
+    line-height: 0.92;
+    letter-spacing: 2px;
+}
+
+
+/* TABLET */
+@media (max-width: 1024px) {
+
+    .hero {
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+
+    .hero-content {
+        width: 100%;
+        max-width: 900px;
+    }
+
+    .hero h1 {
+        font-size: clamp(
+            3rem,
+            7vw,
+            5rem
+        );
+
+        line-height: 0.94;
+        letter-spacing: 1.5px;
+    }
+
+    .hero h2 {
+        font-size: clamp(
+            1.4rem,
+            4vw,
+            2.4rem
+        );
+    }
+}
+
+
+/* CELULAR */
+@media (max-width: 768px) {
+
+    .hero {
+        width: 100%;
+
+        padding-left: 20px;
+        padding-right: 20px;
+
+        box-sizing: border-box;
+    }
+
+    .hero-content {
+        width: 100%;
+        max-width: 100%;
+
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero h1 {
+        width: 100%;
+
+        font-size: clamp(
+            2.35rem,
+            10vw,
+            4rem
+        );
+
+        line-height: 0.95;
+
+        letter-spacing: 0.5px;
+
+        overflow-wrap: normal;
+        word-break: normal;
+    }
+
+    .hero h2 {
+        width: 100%;
+
+        font-size: clamp(
+            1.25rem,
+            5.5vw,
+            1.9rem
+        );
+
+        line-height: 1.1;
+    }
+
+    .hero-description {
+        width: 100%;
+        max-width: 580px;
+
+        font-size: 0.92rem;
+
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .primary-button {
+        max-width: 340px;
+
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+
+/* CELULARES PEQUEÑOS */
+@media (max-width: 400px) {
+
+    .hero {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .hero h1 {
+        font-size: clamp(
+            2.15rem,
+            10vw,
+            3.2rem
+        );
+
+        line-height: 0.96;
+
+        letter-spacing: 0;
+    }
+
+    .hero h2 {
+        font-size: 1.25rem;
+    }
+
+    .hero-description {
+        font-size: 0.88rem;
+    }
+
+    .primary-button {
+        width: 100%;
+        max-width: 320px;
+    }
+}
+
+
+/* =========================================================
+   CORRECCIÓN DEL "DE ISNARDO GARCÍA"
+========================================================= */
+
+.hero h2 span,
+.hero h2 strong {
+    color: inherit !important;
+}
+
+
+/* =========================================================
+   CORRECCIÓN DEL BOTÓN PRINCIPAL
+   SIN FRANJA VERDE
+========================================================= */
+
+.primary-button {
+    background: var(--red) !important;
+
+    color: #FFFFFF !important;
+
+    border: none !important;
+
+    box-shadow: none;
+}
+
+.primary-button::before,
+.primary-button::after {
+    content: none !important;
+
+    display: none !important;
+}
+
+.primary-button:hover {
+    background: var(--red-light) !important;
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 30px
+        rgba(197, 47, 72, 0.25);
+}
+
+
+/* =========================================================
+   MÁRGENES LATERALES PERFECTAMENTE SIMÉTRICOS
+========================================================= */
+
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   EVITAR QUE CUALQUIER ELEMENTO ROMPA EL ANCHO
+========================================================= */
+
+section,
+header,
+footer,
+main,
+nav,
+div {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+
+img,
+iframe,
+video {
+    max-width: 100%;
+}
+
+/* =========================================================
+   BOTÓN "COTIZA TU EVENTO" DENTRO DEL MENÚ MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .nav-menu .primary-button {
+        width: 100% !important;
+
+        display: flex;
+
+        justify-content: flex-start;
+        align-items: center;
+
+        text-align: left;
+
+        margin: 0;
+
+        padding: 15px 5px;
+
+        background: transparent !important;
+
+        color: #D5D3CC !important;
+
+        border: none !important;
+
+        border-bottom:
+            1px solid
+            rgba(255, 255, 255, 0.06) !important;
+
+        border-radius: 0;
+
+        box-shadow: none !important;
+
+        transform: none !important;
+
+        font-size: 0.9rem;
+
+        font-weight: normal;
+
+        letter-spacing: 0;
+
+        text-transform: none;
+    }
+
+    .nav-menu .primary-button:hover {
+        background: transparent !important;
+
+        color: var(--red) !important;
+
+        transform: none !important;
+
+        box-shadow: none !important;
     }
 }
