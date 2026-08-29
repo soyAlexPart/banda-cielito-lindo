@@ -5174,3 +5174,76 @@ video {
     }
 
 }
+
+/* =========================================================
+   CORRECCIÓN DEFINITIVA — VIDEOS EN MENÚ MÓVIL
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .nav-menu > :nth-child(4) {
+        display: flex !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+
+        justify-content: center !important;
+        align-items: center !important;
+
+        text-align: center !important;
+    }
+
+    .nav-menu > :nth-child(4) a,
+    .nav-menu > :nth-child(4) button {
+        width: 100% !important;
+        margin: 0 !important;
+
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+
+        text-align: center !important;
+    }
+
+}
+
+/* =========================================================
+   CORRECCIÓN FINAL DEL MENÚ MÓVIL
+========================================================= */
+
+@media (max-width: 768px) {
+
+    #navMenu {
+        align-items: center !important;
+    }
+
+    #navMenu > a {
+        width: 100% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        text-align: center !important;
+
+        align-self: center !important;
+    }
+
+    /* Videos específicamente */
+    #navMenu > a[href="#videos"] {
+        width: 100% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+
+        text-align: center !important;
+        align-self: center !important;
+    }
+
+}
