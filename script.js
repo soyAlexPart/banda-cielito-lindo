@@ -1484,9 +1484,7 @@ ${comentarios}`;
 
 ━━━━━━━━━━━━━━━
 
-Entiendo que esta solicitud no representa una reservación y que la disponibilidad y cotización final deberán ser confirmadas por la agrupación.
-
-¡Gracias!`;
+Entiendo que esta solicitud no representa una reservación y que la disponibilidad y cotización final debe ser confirmada por el representante de la banda.`;
 
 
 
