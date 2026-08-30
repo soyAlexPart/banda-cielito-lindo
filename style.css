@@ -5240,3 +5240,24 @@ video {
     }
 
 }
+
+/* =========================================================
+   FIX MOBILE - SECCIÓN NUESTRA HISTORIA
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .about-content h3 {
+        line-height: 1.15 !important;
+        margin-bottom: 28px !important;
+    }
+
+    .about-content p {
+        line-height: 1.7 !important;
+        margin-bottom: 24px !important;
+    }
+
+    .about-content h3 strong {
+        display: inline;
+    }
+}
