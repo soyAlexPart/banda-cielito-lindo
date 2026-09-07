@@ -3672,7 +3672,6 @@ body {
     min-width: 0;
 }
 
-
 .about-content h3 {
 
     color: var(--white);
@@ -5255,9 +5254,5 @@ video {
     .about-content p {
         line-height: 1.7 !important;
         margin-bottom: 24px !important;
-    }
-
-    .about-content h3 strong {
-        display: inline;
     }
 }
